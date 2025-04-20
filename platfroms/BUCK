@@ -1,0 +1,31 @@
+platform(
+    name = "logging_timestamp",
+    constraint_values = [
+        "//constraints/lib_feature:logging_timestamp",
+    ],
+    deps = [
+        "prelude//platforms:default",
+    ]
+)
+
+platform(
+    name = "only_logging",
+    constraint_values = [
+        "//constraints/lib_feature:logging",
+    ],
+    deps = [
+        "prelude//platforms:default",
+    ]
+)
+
+platform(
+    name = "only_timestamp",
+    constraint_values = [
+        "//constraints/lib_feature:timestamp",
+    ],
+    deps = [
+        "prelude//platforms:default",
+    ]
+)
+
+

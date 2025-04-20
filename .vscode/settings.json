@@ -1,0 +1,8 @@
+{
+    "buck.projectConfig": {
+        "projectPath": "/home/nero/dev/rust/rust_buck2_test",
+        "flavor": [],
+        "target": "",
+        "platform": "linux-x86_64"
+    }
+}

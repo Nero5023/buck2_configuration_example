@@ -1,0 +1,44 @@
+
+rust_binary(
+    name = "main",
+    srcs = ["bin/main.rs"],
+    crate_root = "bin/main.rs",
+    deps = [":library"],
+)
+
+rust_library(
+    name = "library",
+    srcs = glob(
+        ["src/**/*.rs"],
+    ),
+    features = select({
+        "//constraints/lib_feature:logging": ["logging"],
+        "//constraints/lib_feature:timestamp": ["timestamp"],
+        "//constraints/lib_feature:logging_timestamp": ["logging", "timestamp"],
+        "DEFAULT": []
+    })
+)
+
+
+
+
+rust_binary(
+    name = "main2",
+    srcs = ["bin/main2.rs"],
+    crate_root = "bin/main2.rs",
+    deps = [":library2"],
+)
+
+
+rust_library(
+    name = "library2",
+    srcs = glob(
+        ["src/**/*.rs"],
+    ),
+    features = select({
+        "//constraints/lib_feature:logging_timestamp_enabled": ["logging", "timestamp"],
+        "//constraints/lib_feature:timestamp_enabled": ["timestamp"],
+        "//constraints/lib_feature:logging_enabled": ["logging"],
+        "DEFAULT": []
+    })
+)

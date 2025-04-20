@@ -1,0 +1,52 @@
+
+# Can read more about constraints here: https://buck2.build/docs/rule_authors/configurations_by_example/
+
+# constraint_setting defines a key for a logical group of constraint values. A configuration can only
+# have at most one constraint value set for each constraint_settings
+constraint_setting(
+    name = "lib_feature",
+)
+
+constraint_value(
+    name = "logging",
+    constraint_setting = ":lib_feature",
+    visibility = ['PUBLIC']
+)
+
+constraint_value(
+    name = "timestamp",
+    constraint_setting = ":lib_feature",
+    visibility = ['PUBLIC']
+)
+
+
+constraint_value(
+    name = "logging_timestamp",
+    constraint_setting = ":lib_feature",
+    visibility = ['PUBLIC']
+)
+
+# checking a buckconfig value. If the buckconfig is set,
+# this config_setting is satisfied in all configurations
+config_setting(
+    name = "logging_timestamp_enabled",
+    values = {
+        "lib_feature.logging": "true",
+        "lib_feature.timestamp": "true",
+    }
+)
+
+config_setting(
+    name = "logging_enabled",
+    values = {
+        "lib_feature.logging": "true",
+    }
+)
+
+config_setting(
+    name = "timestamp_enabled",
+    values = {
+        "lib_feature.timestamp": "true",
+    }
+)
+
